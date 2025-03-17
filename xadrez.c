@@ -1,60 +1,82 @@
 #include <stdio.h>
 
-    // Movimentando peças do xadrez
-    // Torre, Bispo, Rainha e Cavalo
+// mover a torre
+void moverTorre(int torre) {
+    if (torre == 0) return;
+    printf("Direita\n");
+    moverTorre(torre - 1);
+}
 
-int main(){
-    
-    //Torre usando FOR
-    printf("Movimento da Torre:\n");
-    for (int torre = 0; torre < 5; torre++){
-        printf("Direita\n"); //Mostra a direção do movimento
-    }
-    
-    printf("\n"); // Pra n ficar grudado
+// mover o bispo
+void moverBispoRecursivo(int bispo) {
+    if (bispo == 0) return;
+    printf("Cima Direita\n");
+    moverBispoRecursivo(bispo - 1);
+}
 
-    //Bispo usando WHILE
-    printf("Movimento do Bispo:\n");
-    int bispo = 1;
-    while (bispo <= 5){
+// mover o bispo com loop
+void moverBispoLoop(int bispo) {
+    for (int i = 0; i < bispo; i++) {
         printf("Cima Direita\n");
-        bispo++;
     }
-    
-    printf("\n"); // Pra n ficar grudado
+}
 
-    //Rainha usando DO WHILE
-    printf("Movimento da Rainha:\n");
-    int rainha = 1;
-    do{
-        printf("Esquerda\n");
-        rainha++;
-    } while (rainha <= 8);
-    
-    printf("\n"); // Pra n ficar grudado
+// mover a Rainha
+void moverRainha(int rainha) {
+    if (rainha == 0) return;
+    printf("Esquerda\n");
+    moverRainha(rainha - 1);
+}
 
-    
-    int cavalov = 4, cavaloh = 4;
+// mover o cavalo pra cima e pra direita
+void moverCavalo(int cavalov, int cavaloh) {
     int cavalobaixo = 0;
 
-    // move o cavbalo para baixo
-    printf("Movimento do Cavalo:\n");
-    while (cavalobaixo < 2){  // -> Vai controlar quantos mov o cavalo fez pra vbaixo
-        cavalov++;            // -> Vai repetir 2 vezes fazendo andar 2 pra baixo
-        printf("Baixo\n");
+    // indo para cima (loop while)
+    while (cavalobaixo < 2) {
+        cavalov++; // subidno
+        printf("Cima\n");
         cavalobaixo++;
     }
 
-    for (int k = 0; k < 1; k++)
-    {
-     cavaloh--;               // -> Vai mover uma casa pra esquerda e vai ser repetir uma vez ja q k =0 e vai virar k=1 fechadno o codigo
-     printf("Esquerda\n");
+    // se movendo uma vez para a direita (loop for)
+    for (int k = 0; k < 1; k++) {
+        cavaloh--; // indo pra direita
+        printf("Direita\n");
     }
-    
-    printf("\n"); // Pra n ficar grudado
+}
+
+int main() {
+    int torre = 5;
+    int bispo = 5;
+    int rainha = 8;
+
+    // movimento da torre (recursivo)
+    printf("Movimento da Torre:\n");
+    moverTorre(torre);
+    printf("\n"); // pra n ficar grudado
+
+    // movimento do Bispo (recursivo)
+    printf("Movimento do Bispo (Recursivo):\n");
+    moverBispoRecursivo(bispo);
+    printf("\n"); // pra n ficar grudado
+
+    // movimento do Bispo (loops aninhado)
+    printf("Movimento do Bispo (Loops Aninhados):\n");
+    moverBispoLoop(bispo);
+    printf("\n"); // pra n ficar grudado
+
+    // movimento da Rainha (recursivo)
+    printf("Movimento da Rainha:\n");
+    moverRainha(rainha);
+    printf("\n"); // pra n ficar grudado
+
+    // movimento do Cavalo (loops aninhado)
+    printf("Movimento do Cavalo:\n");
+    moverCavalo(4, 4);
+    printf("\n"); // pra n ficar grudado
 
     printf("Todos os movimentos feitos com sucesso!\n");
 
     return 0;
 }
-
